@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FashionRack POS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand">
+      <img src="assets/logo.png" alt="FashionRack Logo" class="logo" />
+      <div>
+        <h1>FashionRack POS</h1>
+        <p>Urban Clothing Shop Point of Sale</p>
+      </div>
+    </div>
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-target="pos-section">POS</button>
+      <button class="tab-btn" data-target="products-section">Products</button>
+      <button class="tab-btn" data-target="customers-section">Customers</button>
+      <button class="tab-btn" data-target="orders-section">Orders</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- POS SECTION -->
+    <section id="pos-section" class="page-section active">
+      <h2>New Sale</h2>
+      <div class="pos-layout">
+        <!-- Products -->
+        <div class="pos-products card">
+          <div class="card-header">
+            <h3>Items</h3>
+            <select id="posCategoryFilter">
+              <option value="all">All Categories</option>
+              <option value="Shirts">Shirts</option>
+              <option value="Pants">Pants</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+          <div id="posProductList" class="product-grid">
+            <!-- products will render here -->
+          </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="pos-cart card">
+          <div class="card-header">
+            <h3>Cart</h3>
+          </div>
+          <div class="card-body">
+            <table class="table" id="cartTable">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Size</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Subtotal</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+
+            <div class="totals">
+              <div>
+                <label>Discount (%)</label>
+                <input type="number" id="discountInput" value="0" min="0" max="90" />
+              </div>
+              <div class="totals-right">
+                <p>Subtotal: <span id="subtotalAmount">0.00</span></p>
+                <p>Discount: <span id="discountAmount">0.00</span></p>
+                <p class="grand-total">Total: <span id="totalAmount">0.00</span></p>
+              </div>
+            </div>
+
+            <div class="checkout-row">
+              <div>
+                <label for="posCustomerSelect">Customer</label>
+                <select id="posCustomerSelect">
+                  <!-- customers loaded from JS -->
+                </select>
+              </div>
+              <button id="btnCheckout" class="btn-primary">Checkout & Save Order</button>
+            </div>
+
+            <div class="receipt card">
+              <h4>Receipt Preview</h4>
+              <pre id="receiptPreview"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products-section" class="page-section">
+      <div class="section-header">
+        <h2>Products</h2>
+        <button id="btnNewProduct" class="btn-secondary">+ New Product</button>
+      </div>
+
+      <div class="form-card" id="productFormCard">
+        <h3 id="productFormTitle">Add Product</h3>
+        <form id="productForm">
+          <input type="hidden" id="productId" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="productName">Name</label>
+              <input type="text" id="productName" required />
+            </div>
+            <div class="form-group">
+              <label for="productCategory">Category</label>
+              <select id="productCategory" required>
+                <option value="">Select</option>
+                <option value="Shirts">Shirts</option>
+                <option value="Pants">Pants</option>
+                <option value="Accessories">Accessories</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="productSize">Size</label>
+              <input type="text" id="productSize" placeholder="S, M, L, 32, Free" required />
+            </div>
+            <div class="form-group">
+              <label for="productColor">Color</label>
+              <input type="text" id="productColor" required />
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Price (Rs.)</label>
+              <input type="number" id="productPrice" min="0" step="0.01" required />
+            </div>
+            <div class="form-group">
+              <label for="productStock">Stock Qty</label>
+              <input type="number" id="productStock" min="0" required />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Save</button>
+            <button type="button" id="btnCancelProduct" class="btn-ghost">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <table class="table" id="productsTable">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Size</th>
+              <th>Color</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- products render here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CUSTOMERS SECTION -->
+    <section id="customers-section" class="page-section">
+      <div class="section-header">
+        <h2>Customers</h2>
+        <button id="btnNewCustomer" class="btn-secondary">+ New Customer</button>
+      </div>
+
+      <div class="form-card" id="customerFormCard">
+        <h3 id="customerFormTitle">Add Customer</h3>
+        <form id="customerForm">
+          <input type="hidden" id="customerId" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="customerName">Name</label>
+              <input type="text" id="customerName" required />
+            </div>
+            <div class="form-group">
+              <label for="customerPhone">Phone</label>
+              <input type="tel" id="customerPhone" required />
+            </div>
+            <div class="form-group">
+              <label for="customerEmail">Email</label>
+              <input type="email" id="customerEmail" />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Save</button>
+            <button type="button" id="btnCancelCustomer" class="btn-ghost">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <table class="table" id="customersTable">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- customers render here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ORDERS SECTION -->
+    <section id="orders-section" class="page-section">
+      <h2>Orders</h2>
+      <div class="card">
+        <table class="table" id="ordersTable">
+          <thead>
+            <tr>
+              <th>Order No</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total (Rs.)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- orders render here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>FashionRack POS &copy; 2025 | Developed for Web Based POS Project</p>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
