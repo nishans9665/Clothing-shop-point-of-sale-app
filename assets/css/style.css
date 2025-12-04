@@ -334,8 +334,8 @@ body {
 }
 
 .order-items-container {
-  flex: 1;
-  /* min-height: 120px; */
+  /* flex: 1; */
+  min-height: 23vh;
   border-radius: 0.5rem;
   /* background: #D1E9F6; */
   /* padding: 0.75rem; */
@@ -347,7 +347,7 @@ body {
 }
 
 .cart-items {
-  max-height: 220px;
+  max-height: 180px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
