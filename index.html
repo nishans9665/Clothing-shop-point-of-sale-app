@@ -67,9 +67,10 @@
 
       <!-- Order summary sidebar -->
       <aside class="col-sm-3 order-panel">
-        <div class="order-header">
-          <h2>Order Summary</h2>
-          <p id="noItemsText">No items yet</p>
+        <div class="order-header d-flex ">
+          <div><h2>Order Summary</h2>
+          <p id="noItemsText">No items yet</p></div>
+          <div class="ms-auto"><button id="clearOrderBtn" class="cart-close">x</button></div>
         </div>
 
         <div class="order-block">
@@ -78,7 +79,6 @@
         </div>
 
         <div class="order-block order-items-container">
-          <h3>Items</h3>
           <div id="cartItems" class="cart-items">
             <!-- Line items -->
           </div>
@@ -118,7 +118,6 @@
         </div>
 
         <div class="order-actions">
-          <button id="clearOrderBtn" class="btn secondary">Clear</button>
           <button id="completeOrderBtn" class="btn primary">Complete Order</button>
         </div>
       </aside>

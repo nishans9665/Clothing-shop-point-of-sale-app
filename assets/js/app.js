@@ -138,20 +138,28 @@ function renderCart() {
     row.className = "cart-item";
 
     row.innerHTML = `
-      <div class="cart-item-main">
+      <div class="cart-item-main gap-1">
         <span class="cart-item-name">${item.name}</span>
         <span class="cart-item-meta">
           ${formatMoney(item.price)} x ${item.qty}
         </span>
-      </div>
-      <div class="cart-item-actions">
         <div class="qty-buttons">
           <button class="qty-btn" data-action="dec">-</button>
           <span class="qty-value">${item.qty}</span>
           <button class="qty-btn" data-action="inc">+</button>
         </div>
-        <span>${formatMoney(item.price * item.qty)}</span>
-        <button class="remove-item-btn">Remove</button>
+      </div>
+      <div class="cart-item-actions">
+        
+        <span class="qty-price">${formatMoney(item.price * item.qty)}</span>
+        <button class="remove-item-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="3 6 5 6 21 6" />
+    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+    <path d="M10 11v6" />
+    <path d="M14 11v6" />
+    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+  </svg></button>
       </div>
     `;
 
