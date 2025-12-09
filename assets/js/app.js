@@ -7,6 +7,38 @@ let customers = [];
 let orders = [];
 let cart = [];
 
+const CATEGORIES = [
+  "Shirts",
+  "T-Shirts",
+  "Pants",
+  "Jeans",
+  "Shorts",
+  "Hoodies",
+  "Jackets",
+  "Blazers",
+  "Shoes",
+  "Sandals",
+  "Bags",
+  "Watches",
+  "Wallets",
+  "Belts"
+];
+
+// ---------leoad category------
+const productCategorySelect = document.getElementById("productCategory");
+
+if (productCategorySelect) {
+  productCategorySelect.innerHTML = "";
+
+  CATEGORIES.forEach(cat => {
+    const option = document.createElement("option");
+    option.value = cat;
+    option.textContent = cat;
+    productCategorySelect.appendChild(option);
+  });
+}
+
+
 // ------------------ Helpers ------------------ //
 
 const formatMoney = (amount) => `Rs ${amount.toFixed(2)}`;
@@ -255,8 +287,8 @@ function renderProductsTable() {
       <td>${p.category}</td>
       <td>${formatMoney(p.price)}</td>
       <td>
-        <button class="btn secondary btn-sm" data-action="edit">Edit</button>
-        <button class="btn primary btn-sm" data-action="delete">Delete</button>
+        <button class="btn btn-secondary btn-sm" data-action="edit">Edit</button>
+        <button class="btn btn-primary btn-sm" data-action="delete">Delete</button>
       </td>
     `;
 
@@ -286,55 +318,58 @@ function deleteProduct(id) {
   renderProductsTable();
 }
 
+
 const productForm = document.getElementById("productForm");
-productForm.addEventListener("submit", (e) => {
-  e.preventDefault();
 
-  const idField = document.getElementById("productId");
-  const nameField = document.getElementById("productName");
-  const categoryField = document.getElementById("productCategory");
-  const priceField = document.getElementById("productPrice");
-  const imageField = document.getElementById("productImage");
+if (productForm) {
+  productForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  const name = nameField.value.trim();
-  const category = categoryField.value;
-  const price = Number(priceField.value);
-  const image = imageField.value.trim() || "assets/img/shirt-1.jpg";
+    const idField = document.getElementById("productId");
+    const nameField = document.getElementById("productName");
+    const categoryField = document.getElementById("productCategory");
+    const priceField = document.getElementById("productPrice");
+    const imageField = document.getElementById("productImage");
 
-  if (!name || isNaN(price)) return;
+    const name = nameField.value.trim();
+    const category = categoryField.value;
+    const price = Number(priceField.value);
+    const image = imageField.value.trim() || "assets/img/shirt-1.jpg";
 
-  if (idField.value) {
-    // Update
-    const id = Number(idField.value);
-    const product = products.find((p) => p.id === id);
-    if (product) {
-      product.name = name;
-      product.category = category;
-      product.price = price;
-      product.image = image;
+    if (!name || isNaN(price)) return;
+
+    if (idField.value) {
+      const id = Number(idField.value);
+      const product = products.find(p => p.id === id);
+      if (product) {
+        product.name = name;
+        product.category = category;
+        product.price = price;
+        product.image = image;
+      }
+    } else {
+      products.push({
+        id: Date.now(),
+        name,
+        category,
+        price,
+        image,
+      });
     }
-  } else {
-    // Create
-    const newProduct = {
-      id: Date.now(),
-      name,
-      category,
-      price,
-      image,
-    };
-    products.push(newProduct);
+
+    productForm.reset();
+    idField.value = "";
+
+    renderProducts();
+    renderProductsTable();
+  });
+
+  const resetBtn = document.getElementById("resetProductForm");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => productForm.reset());
   }
+}
 
-  productForm.reset();
-  document.getElementById("productId").value = "";
-
-  renderProducts();
-  renderProductsTable();
-});
-
-document
-  .getElementById("resetProductForm")
-  .addEventListener("click", () => productForm.reset());
 
 // ------------------ Admin: Customers ------------------ //
 
@@ -489,7 +524,10 @@ adminTabs.forEach((tab) => {
 
 // ------------------ Event bindings ------------------ //
 
-document.getElementById("searchInput").addEventListener("input", renderProducts);
+const searchInput = document.getElementById("searchInput");
+if (searchInput) {
+  searchInput.addEventListener("input", renderProducts);
+}
 
 document.querySelectorAll(".category-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
