@@ -44,7 +44,7 @@ body {
 }
 
 .logo-text .accent {
-  color: #ff7b39;
+  color: #11224E;
 }
 
 .top-nav {
@@ -64,11 +64,11 @@ body {
 }
 
 .nav-btn:hover {
-  background: #202020;
+  background: #11224E;
 }
 
 .nav-btn-active {
-  background: #ff7b39;
+  background: #11224E;
 }
 
 /* --- Main layout --- */
@@ -447,7 +447,7 @@ body {
 
 #admin-view {
   flex-direction: column;
-  background: #111;
+  /* background: #111; */
   border-radius: 0.75rem;
   padding: 1rem;
 }
@@ -491,7 +491,7 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem 1rem;
   margin-bottom: 1rem;
-  background: #151515;
+  background: #e3e3e3;
   padding: 0.75rem;
   border-radius: 0.75rem;
 }
@@ -527,13 +527,13 @@ body {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.8rem;
-  background: #151515;
+  background: #e3e3e3;
   border-radius: 0.75rem;
   overflow: hidden;
 }
 
 .admin-table thead {
-  background: #1f1f1f;
+  background: #e3e3e3;
 }
 
 .admin-table th,
@@ -544,7 +544,7 @@ body {
 }
 
 .admin-table tbody tr:nth-child(even) {
-  background: #181818;
+  background: #e3e3e3;
 }
 
 .admin-table button {

@@ -65,6 +65,7 @@ function renderProducts() {
   });
 }
 
+
 // Render cart items
 function renderCart() {
   cartItemsEl.innerHTML = "";
@@ -515,3 +516,5 @@ renderCart();
 renderProductsTable();
 renderCustomersTable();
 renderOrdersTable();
+
+

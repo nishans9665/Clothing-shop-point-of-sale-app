@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoS Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Top Navbar -->
+    <header class="topbar">
+        <div class="logo">
+            <!-- <span class="logo-icon"></span> -->
+            <span class="logo-text">FashionRack <span class="accent">POS</span></span>
+        </div>
+        <nav class="top-nav">
+            <button class="nav-btn nav-btn-active" data-view="pos-view">POS</button>
+            <button class="nav-btn" data-view="admin-view">Back Office</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- ADMIN VIEW -->
+    <section id="admin-view" class="view">
+      <div class="admin-tabs">
+        <button class="admin-tab admin-tab-active" data-admin="products-admin">
+          Products
+        </button>
+        <button class="admin-tab" data-admin="customers-admin">
+          Customers
+        </button>
+        <button class="admin-tab" data-admin="orders-admin">
+          Orders
+        </button>
+      </div>
+
+      <!-- Products CRUD -->
+      <section id="products-admin" class="admin-section admin-section-active">
+        <h2>Manage Products</h2>
+        <form id="productForm" class="admin-form">
+          <input type="hidden" id="productId" />
+
+          <div class="form-row">
+            <label>Product Name</label>
+            <input type="text" id="productName" required />
+          </div>
+
+          <div class="form-row">
+            <label>Category</label>
+            <select id="productCategory" required>
+              <option value="Men">Men</option>
+              <option value="Women">Women</option>
+              <option value="Kids">Kids</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label>Price (Rs)</label>
+            <input type="number" id="productPrice" min="0" step="0.01" required />
+          </div>
+
+          <div class="form-row">
+            <label>Image URL</label>
+            <input type="text" id="productImage" placeholder="assets/img/shirt-1.jpg" />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="saveProductBtn">
+              Save Product
+            </button>
+            <button type="button" class="btn secondary" id="resetProductForm">
+              Reset
+            </button>
+          </div>
+        </form>
+
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price (Rs)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody">
+            <!-- Products rows -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Customers CRUD -->
+      <section id="customers-admin" class="admin-section">
+        <h2>Manage Customers</h2>
+
+        <form id="customerForm" class="admin-form">
+          <input type="hidden" id="customerId" />
+
+          <div class="form-row">
+            <label>Customer Name</label>
+            <input type="text" id="customerFullName" required />
+          </div>
+          <div class="form-row">
+            <label>Phone</label>
+            <input type="text" id="customerPhone" />
+          </div>
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" id="customerEmail" />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Save Customer</button>
+            <button type="button" class="btn secondary" id="resetCustomerForm">
+              Reset
+            </button>
+          </div>
+        </form>
+
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="customersTableBody">
+            <!-- Customers rows -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Orders CRUD -->
+      <section id="orders-admin" class="admin-section">
+        <h2>Manage Orders</h2>
+
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Total (Rs)</th>
+              <th>Payment</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <!-- Orders rows -->
+          </tbody>
+        </table>
+      </section>
+    </section>
+    </div>
+
+
+    <footer class="footer">
+        <span>FashionRack POS &copy; 2025</span>
+    </footer>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
