@@ -65,10 +65,8 @@ User authentication
 
 ---
 
-If you want, I can:
-- Add **GitHub badges**
-- Shorten it for a **portfolio project**
-- Rewrite it for a **professional enterprise POS**
-- Create a **backend-ready version README**
+👤 Author
 
-Just tell me 👍
+Nishan Sameera
+GitHub: https://github.com/nishans9665
+Linkedin: https://www.linkedin.com/in/nishan-sameera/
