@@ -386,7 +386,7 @@ function renderCustomersTable() {
       <td>${c.email || "-"}</td>
       <td>
         <button class="btn secondary btn-sm" data-action="edit">Edit</button>
-        <button class="btn primary btn-sm" data-action="delete">Delete</button>
+        <button class="btn btn-primary btn-sm" data-action="delete">Delete</button>
       </td>
     `;
     const [editBtn, deleteBtn] = tr.querySelectorAll("button");
@@ -469,7 +469,7 @@ function renderOrdersTable() {
       <td>${formatMoney(o.total)}</td>
       <td>${o.paymentMethod}</td>
       <td>
-        <button class="btn primary btn-sm" data-index="${index}">
+        <button class="btn btn-primary btn-sm" data-index="${index}">
           Delete
         </button>
       </td>
